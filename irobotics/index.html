@@ -1,0 +1,188 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+#album-list{
+  width: 650px;
+}
+.photo-header{
+  margin: 10px 0;
+  background-color: #f0f0f0;
+  clear: both;
+}
+.photogroup-hidden{
+  display: none;
+}
+.album-each{
+  width: 210px;
+  height: 250px;
+  float: left;
+  padding: 2px 2px 25px 2px;
+}
+img.album{
+  width: 100%;
+  margin-bottom: 10px;
+  height: auto;
+  max-width: 100% !important;
+}
+</style>
+<body>
+<h2>Photos</h2>
+<div id="album-list">
+</div>
+<script type="text/javascript">
+// wrap everything in a function to avoid interference with global variables
+(function (){
+  // album list
+  var albums = null;
+  var minYear = 0;
+  var maxYear = 0;
+  // array of albums separated by academic year
+  var albums_by_year = [];
+  
+  /**
+   * Populates the albums_by_year array from minYear to maxYear
+   */
+  function fillAlbumArray() {
+    for (var i = 0; i < maxYear - minYear + 1; i++) {
+      albums_by_year[albums_by_year.length] = {year: i + minYear, albums: []};
+    }
+    albums.forEach(function(album) {
+      albums_by_year[album.year - minYear].albums.push(album);
+    });
+  }
+  
+  function showAlbum() {
+    var container = $("#album-list");
+    for (var i = albums_by_year.length - 1; i >= 0; i--) {
+      var albumsTuple = albums_by_year[i];
+      var albums = albumsTuple.albums;
+      container.append('<h3 class="photo-header">' + (albumsTuple.year - 1) + "-" + albumsTuple.year + " ↓</h3>");
+      var albumID = "alb-" + albumsTuple.year;
+      container.append('<div id="' + albumID + '" class="photogroup"></div>');
+      var photogroup = $("#" + albumID);
+      for (var j = 0; j < albums.length; j++) {
+        photogroup.append('<div class="album-each">' +
+        '<a target="_blank" href="' + albums[j].link + '"><br>' +
+        '<img class="album" src="http://imgur.com/' + albums[j].cover + 'b.jpg" alt="' + albums[j].title + '"><br>' +
+        albums[j].title + '<br>' +
+        '</a>'
+        );
+      }
+    }
+  }
+  
+  // set minimum and maximum academic years of the albums
+  var academicYearRange = {
+    /**
+     * Figure out the range from an album list
+     * If time is stated in album name, use that
+     * Otherwise, fall back to upload time
+    */
+    get: function(albums) {
+      function nextAcademicYear(month) {
+        // cut-off point is start of August. Dates after that belong to next academic year.
+        return (month >= 8);
+      }
+      
+      var override = {
+        'iRobotics Demno at 4H' : 2013
+      };
+      
+      var toYear = function(time) {
+        // epoch time to milliseconds
+        var date = new Date(time * 1000);
+        var year = date.getFullYear();
+        // return value of getMonth ranges from 0 to 11
+        if (nextAcademicYear(date.getMonth() + 1))
+          year++;
+        return year;
+      }
+    
+      var min = Number.MAX_VALUE, max = Number.MIN_VALUE;
+      var result;
+      albums.forEach(function(album) {
+        var year = toYear(album.datetime);
+        // List of special cases
+        if (override[album.title] != null) {
+          year = override[album.title];
+        } else {
+          // Scan album name to obtain academic year. Hopefully we never reach the year 2100
+          if ((result = album.title.match(/20\d\d-20\d\d/)) != null) {
+            // assuming only first match contains the year. 2012-2013 gives 2013
+            year = parseInt(result[0].substr(0, 4)) + 1;
+          } else if ((result = album.title.match(/20\d\d/)) != null) {
+            // single year. 2013=>2013
+            year = parseInt(result[0].substr(0, 4));
+            // handling special keywords
+            if (year == 2014 && (new Date(album.datetime * 1000)).getMonth() >= 7)
+              year = toYear(album.datetime);
+            else
+              if (album.title.toLowerCase().indexOf("fall") > -1 || album.title.toLowerCase().indexOf("quad") > -1)
+                year++;
+          } else if ((result = album.title.match(/\d\d?\/\d\d?\/\d\d/)) != null) {
+            // DD/MM/YY format, pick last two digit
+            year = parseInt(result[0].substr(result[0].length - 2, 2)) + 2000;
+            var month = parseInt(result[0].split("/")[1]);
+            if (nextAcademicYear(month)) year++;
+          }
+        }
+        // store year inside album
+        album.year = year;
+        if (year > max) max = year;
+        if (year < min) min = year;
+      });
+      
+      // year format is "X-1 to X"
+      return [min, max];
+    }
+  };
+  
+  function doError() {
+    $("#album-list").prepend("<p>Robot temporarily malfunctioning. Check back later. :P</p>");
+  }
+  
+  // ajax call to fetch album list
+  $.ajax({
+    // api end point
+    url: 'https://api.imgur.com/3/account/irobotics/albums/',
+    method: 'GET',
+	// API auth header
+    headers: {
+      Authorization: 'Client-ID ' + '0ad87485d642182',
+      Accept: 'application/json'
+    },
+    data: {
+    },
+    success: function(result) {
+      // was it successful?
+      if (result.success && (result.status === 200)) {
+        try {
+          // sort everything in descending order, as on website
+          albums = result.data.sort(function(a, b){
+            if (a.datetime > b.datetime)
+              return -1;
+            else if (a.datetime == b.datetime)
+              return 0;
+            return 1;
+          });
+          var range = academicYearRange.get(albums);
+          minYear = range[0];
+          maxYear = range[1];
+          fillAlbumArray();
+          showAlbum();
+          console.log("fin");
+        } catch (err) {
+          doError();
+        }
+      } else {
+        // error message
+        doError();
+      }
+    },
+    error: function(xhr, status, error) {
+      doError();
+    }
+  });
+})();
+</script>
+
+</body>
