@@ -7,6 +7,7 @@
   margin: 10px 0;
   background-color: #f0f0f0;
   clear: both;
+  cursor: pointer;
 }
 .photogroup-hidden{
   display: none;
@@ -55,9 +56,9 @@ img.album{
     for (var i = albums_by_year.length - 1; i >= 0; i--) {
       var albumsTuple = albums_by_year[i];
       var albums = albumsTuple.albums;
-      container.append('<h3 class="photo-header">' + (albumsTuple.year - 1) + "-" + albumsTuple.year + " ↓</h3>");
       var albumID = "alb-" + albumsTuple.year;
-      container.append('<div id="' + albumID + '" class="photogroup"></div>');
+      container.append('<h3 class="photo-header" data-album="' + albumID + '">' + (albumsTuple.year - 1) + "-" + albumsTuple.year + " ↓</h3>");
+      container.append('<div id="' + albumID + '" class="photogroup photogroup-hidden"></div>');
       var photogroup = $("#" + albumID);
       for (var j = 0; j < albums.length; j++) {
         photogroup.append('<div class="album-each">' +
@@ -68,6 +69,15 @@ img.album{
         );
       }
     }
+    $("#album-list h3").click(function(event) {
+      var alb = $("#" + $(event.target).data("album"));
+      var hiddenClass = "photogroup-hidden";
+      // hide/unhides the corresponding album
+      if (alb.hasClass(hiddenClass))
+        alb.removeClass(hiddenClass);
+      else
+        alb.addClass(hiddenClass);
+    });
   }
   
   // set minimum and maximum academic years of the albums
