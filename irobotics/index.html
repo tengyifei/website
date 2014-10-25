@@ -138,7 +138,7 @@ img.album{
         var albums = albumsTuple.albums;
         var albumID = "alb-" + albumsTuple.year;
         // add header text
-        container.append('<h3 class="photo-header" data-album="' + albumID + '">' + (albumsTuple.year - 1) + "-" + albumsTuple.year + " ↓</h3>");
+        container.append('<h3 class="photo-header" data-album="' + albumID + '">' + (albumsTuple.year - 1) + "-" + albumsTuple.year + " \u2193</h3>");
         // add annual album
         container.append('<div id="' + albumID + '" class="photogroup photogroup-hidden"></div>');
         var photogroup = $("#" + albumID);
