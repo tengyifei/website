@@ -31,7 +31,7 @@ img.album{
 </div>
 <script type="text/javascript">
 // wrap everything in a function to avoid interference with global variables
-(function () {
+(function ($) {
 
   /**
    * Constructor. Class to set minimum and maximum academic years of the albums.
@@ -212,7 +212,7 @@ img.album{
       doError();
     }
   });
-})();
+})(jQuery);
 </script>
 
 </body>
