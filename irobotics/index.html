@@ -91,9 +91,9 @@ img.album{
                 if (album.title.toLowerCase().indexOf("fall") > -1 || album.title.toLowerCase().indexOf("quad") > -1)
                   year++;
             } else if ((result = album.title.match(/\d\d?\/\d\d?\/\d\d/)) != null) {
-              // DD/MM/YY format, pick last two digit
+              // MM/DD/YY format, pick last two digit
               year = parseInt(result[0].substr(result[0].length - 2, 2)) + 2000;
-              var month = parseInt(result[0].split("/")[1]);
+              var month = parseInt(result[0].split("/")[0]);
               if (this.nextAcademicYear(month)) year++;
             }
           }
