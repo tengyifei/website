@@ -74,6 +74,7 @@ img.album{
           if (override[album.title] != null) {
             year = override[album.title];
           } else {
+            if (album.title == null) continue;
             // Scan album name to obtain academic year. Hopefully we never reach the year 2100
             if ((result = album.title.match(/20\d\d-20\d\d/)) != null) {
               // assuming only first match contains the year. 2012-2013 gives 2013
