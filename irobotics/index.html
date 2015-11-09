@@ -1,4 +1,4 @@
-﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <style>
 #album-list{
   width: 650px;
@@ -75,6 +75,12 @@ img.album{
             year = override[album.title];
           } else {
             if (album.title == null) album.title = "";
+            if ((result = album.title.match(/\d\d?\/\d\d?\/\d\d\d\d/)) != null) {
+              // MM/DD/YYYY format, pick last two digit
+              year = parseInt(result[0].substr(result[0].length - 2, 2)) + 2000;
+              var month = parseInt(result[0].split("/")[0]);
+              if (this.nextAcademicYear(month)) year++;
+            } else
             // Scan album name to obtain academic year. Hopefully we never reach the year 2100
             if ((result = album.title.match(/20\d\d-20\d\d/)) != null) {
               // assuming only first match contains the year. 2012-2013 gives 2013
