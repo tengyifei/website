@@ -3,4 +3,4 @@ _cache/
 .sass-cache/
 .DS_Store
 .stack-work
-.dist/
+dist/
