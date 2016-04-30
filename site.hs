@@ -17,6 +17,12 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
+    --- domain settings ---
+
+    match "CNAME" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     --- blog ---
 
     match "images/*" $ do
