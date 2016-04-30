@@ -1,56 +1,44 @@
-body {
-    color: black;
-    font-size: 16px;
-    margin: 0px auto 0px auto;
-    width: 600px;
+.tnc-background {
+  background: url('/images/newyork.jpg') center / cover;
+  background-attachment: fixed;
 }
 
-div#header {
-    border-bottom: 2px solid black;
-    margin-bottom: 30px;
-    padding: 12px 0px 12px 0px;
+.tnc-layout .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+  padding-right: 0;
 }
 
-div#logo a {
-    color: black;
-    float: left;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
+.tnc-layout .mdl-layout__header,
+.tnc-layout .mdl-layout__drawer-button,
+.tnc-layout .mdl-navigation,
+.tnc-layout .mdl-navigation__link {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: #212121;
 }
 
-div#header #navigation {
-    text-align: right;
+.tnc-main {
 }
 
-div#header #navigation a {
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 12px;
-    text-decoration: none;
-    text-transform: uppercase;
+.tnc-header .mdl-layout__header-row {
+  padding-left: 40px;
 }
 
-div#footer {
-    border-top: solid 2px black;
-    color: #555;
-    font-size: 12px;
-    margin-top: 30px;
-    padding: 12px 0px 12px 0px;
-    text-align: right;
+.tnc-container {
+  max-width: 1600px;
+  width: calc(100% - 16px);
+  margin: 0 auto;
 }
 
-h1 {
-    font-size: 24px;
+.tnc-content {
+  border-radius: 2px;
+  padding: 80px 56px;
+  margin-bottom: 80px;
 }
 
-h2 {
-    font-size: 20px;
+.tnc-layout.is-small-screen .tnc-content {
+  padding: 40px 28px;
 }
 
-div.info {
-    color: #555;
-    font-size: 14px;
-    font-style: italic;
+.tnc-content h3 {
+  margin-top: 48px;
 }
