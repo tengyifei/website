@@ -25,7 +25,7 @@ main = hakyll $ do
 
     --- blog ---
 
-    match "images/*" $ do
+    match (fromGlob "images/**" .&&. complement "images/**/*.psd") $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -60,7 +60,6 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
-
     match "index.html" $ do
         route idRoute
         compile $ do
@@ -75,6 +74,17 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
 
+    match "templates/background-switcher.html" $
+        compile $ do
+            covers <- loadAll (fromGlob "images/cover/**" .&&. complement "images/**/*.psd")
+            let coverNames = map itemIdAsBody covers
+            let backgroundCtx =
+                    listField "imageNames" defaultContext (return coverNames)
+
+            getResourceBody
+                >>= applyAsTemplate backgroundCtx
+                >>= (\(Item i x) -> makeItem $ readTemplate x)
+
     match "templates/*" $ compile templateCompiler
 
 
@@ -83,3 +93,6 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+itemIdAsBody :: Item CopyFile -> Item String
+itemIdAsBody (Item i _) = Item i (toFilePath i)

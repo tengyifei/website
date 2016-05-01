@@ -1,6 +1,26 @@
-.tnc-background {
-  background: url('/images/newyork.jpg') center / cover;
-  background-attachment: fixed;
+#tnc-background {
+  position: fixed;
+  width: 100%;
+  height: 105%;
+  left: -10px;
+  right: -10px;
+  top: -10px;
+  z-index: 1;
+
+  display: block;
+  background: url('/images/cover/newyork.jpg') center / cover;
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.tnc-main {
+  left: 0;
+  right: 0;
+  z-index: 9999;
 }
 
 .tnc-layout .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
