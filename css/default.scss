@@ -1,6 +1,6 @@
 #tnc-background {
   position: fixed;
-  width: 100%;
+  width: 105%;
   height: 105%;
   left: -10px;
   right: -10px;
@@ -59,6 +59,14 @@
   padding: 40px 28px;
 }
 
+/* header link */
+
+.mdl-layout-title a {
+    color: #212121;
+    font-weight: 400;
+    text-decoration: initial;
+}
+
 /* font sizes */
 
 .tnc-content h1, .tnc-content h2, .tnc-content h3 {
@@ -76,3 +84,5 @@
 .tnc-content h3 {
   font-size: 20px;
 }
+
+@import "css/partials/scrollbar"

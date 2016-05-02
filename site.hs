@@ -4,7 +4,6 @@ import           Data.Monoid (mappend)
 import           Hakyll
 import           Hakyll.Web.Sass
 
-
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -34,10 +33,18 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match "css/*.scss" $ do
-        route   $ setExtension "css"
-        compile sassCompiler
-        compile compressCssCompiler
+    -- import scss --
+    match ("css/**/*.scss" .||. "css/*.scss") $
+        compile idCompiler
+
+    create ["css/default.css"] $ do
+        route   idRoute
+        compile $ do
+            (dummy:_) <- loadAll "css/**/*.scss"
+            (mainCSS:_) <- loadAll "css/default.scss"
+            renderSass dummy    -- watch dependencies
+            css <- renderSass mainCSS
+            return $ compressCss <$> css
 
     match (fromList ["about.rst", "contact.markdown"]) $ do
         route   $ setExtension "html"
@@ -104,3 +111,6 @@ postCtx =
 
 itemIdAsBody :: Item CopyFile -> Item String
 itemIdAsBody (Item i _) = Item i (toFilePath i)
+
+idCompiler :: Compiler (Item String)
+idCompiler = getResourceString >>= (\(Item i x) -> makeItem x)
