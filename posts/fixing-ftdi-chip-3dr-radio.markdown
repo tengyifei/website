@@ -7,7 +7,7 @@ tags: 3DR radio,FTDI,soldering
 
 I bought a 3DR radio unit (a pair of UHF transmitter and receiver operating at 915Mhz) from Hobbyking, plugged it into my computer, and discovered that the ground unit was bricked. The red LED lights flashes periodically, as seen below, and the transmitter unit was not detected by my computer.
 
-<div class="video-container"><iframe width="560" height="315" src="http://www.youtube-nocookie.com/embed/jfLEBMeVQBc?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
+<div class="video-container"><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/jfLEBMeVQBc?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
 
 Unwilling to acquiesce the loss of 30+ dollars, I decided to see if I could fix it. I searched for the problem of undetectable 3DR radio online, but most answers recommended upgrading/downgrading drivers. I followed those instructions closely, but my actions were in vain: the chip was still not detected. I tried plugging it into other computers, same result. The two strong LEDs flashing in unison looked like two penetrating eyes mocking my efforts. After hours of fiddling, it was clear that _the cause was a hardware problem, not a software one. _
 
