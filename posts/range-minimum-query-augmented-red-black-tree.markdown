@@ -3,6 +3,7 @@ title: Answer range minimum queries using augmented red-black trees
 published: 2014-05-22T14:18:28Z
 categories: Computer Science,Mathematics
 tags: algorithms
+featured: true
 ---
 
 Is learning how algorithms work useful in daily computer programming? Some might argue that this is no longer the case, given the plethora of packaged libraries readily available providing battle-tested algorithm implementations. But I always believe learning to write efficient algorithms is still important, because existing libraries will inevitably fall short of one's needs.

@@ -3,6 +3,7 @@ title: Google trends and Bitcoin prices
 published: 2014-02-26T13:21:20Z
 categories: Computer Science,Cryptocurrencies,Mathematics
 tags: Bitcoin,correlation,data mining,Google Trends,search engine
+featured: true
 ---
 
 Google Trends is a powerful data mining tool with applications ranging from detecting flu outbreaks to predicting fashion. Today I played around with Google Trends, and discovered an interesting correlation between the number of search engine queries on Bitcoin and its price in major exchanges. Not surprisingly, the rise in value in April and November was closely matched with a rise in interest in Bitcoin. But during the second rally, the change in search volume actually _predates_ any change in price by a few days. Maybe this could be exploited to make some form of prediction on Bitcoin prices. 

@@ -3,6 +3,7 @@ title: Redis blogging system design
 published: 2014-12-31T16:27:17Z
 categories: Computer Science,Web
 tags: Redis
+featured: true
 ---
 
 To be honest, I never regarded Redis as a database system capable of standing on its own, using it as a rudimentary key-value store or LRU cache most of the time. But due to a number of technical limitations, I was stuck with Redis as the only DB option for a project. As I trudged through the implementation however, I realized that Redis boasts powerful and flexible data structures. Despite it being necessary for any query with moderate complexity to be explicitly handled by code, the paradigms are well-structured and when employed correctly, will pay off with sheer speed of the database. In this article I'll discuss an approach for implementing blog functionality, taking experience from similar components in my project.

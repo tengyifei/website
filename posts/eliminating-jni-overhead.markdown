@@ -3,6 +3,7 @@ title: Eliminating JNI overhead: tricks and trade-offs
 published: 2014-03-30T09:32:00Z
 categories: Computer Science
 tags: C++,intrinsics,Java,JNI,Optimization
+featured: true
 ---
 
 Out of all Java codes convertible to C using the Java Native Interface, the following breed is the hardest to optimize: methods that are invoked very frequently and have low run time. More often than not the overhead entailed by JNI becomes significant enough that it offsets any gain in speed brought by native code, or worse, making the resulting program even slower. When optimizing a Java-based matrix multiplication program, I encountered a lot of such methods. Most of them are in the form of nested loops responsible of manipulating matrices on the order of 100 elements. Such trivial methods are generally not considered during optimization, but this time the sheer number of invocations have placed them at the top of the hot spot list. 

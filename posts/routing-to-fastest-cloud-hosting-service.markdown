@@ -3,6 +3,7 @@ title: PaaS: Routing to nearest host for minimum latency
 published: 2014-03-13T14:34:40Z
 categories: Computer Science,Web
 tags: Baidu App Engine,DNS,dnspod,GAE,heroku,PaaS
+featured: true
 ---
 
 Many people today are using PaaS (Platform-as-a-Service) nowadays to build their websites. Most service providers typically cluster their servers in a small region, and route all traffic from the entire Internet to that one place. This is fine if the servers are pretty close to their targeted audience, but page loading performance would be abysmal if the server is located in the U.S. and trying to reach users in, say, China. Since network latency has [significant impact](http://googleresearch.blogspot.com/2009/06/speed-matters.html "Speed Matters") on user experience, it is vital to keep servers in the vicinity of the users, but the spatially-restricted nature of PaaS impedes one from reaching out to a global audience. 

@@ -2,6 +2,7 @@
 title: Programming Languages and the Mind
 published: 2016-01-19T19:44:27Z
 categories: Computer Science
+featured: true
 ---
 
 Paul Graham made sonorous assertions in his article “Beating the average” claiming the effectiveness of Lisp over traditional programming languages. The killer feature, as I observed, buried deep in layers of hand-waving arguments for Lisp, is the perfect mirroring from Lisp code to Lisp data structures. Few other if any imperative languages retrofitted with functional characteristics ever receives this ability. If you’ve heard of abstract syntax trees, or ASTs, and may have written a parser that transforms a string of source code to ASTs, you’d be surprised to see that a fully-loaded Lisp program _is_ the AST. That has lead to the proliferation of macros, programs operating on programs, thereby enabling vast classes of meta-thinking to manifest itself cleanly in those weird parentheses.

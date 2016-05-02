@@ -3,6 +3,7 @@ title: Get HHVM running on OpenShift
 published: 2014-06-26T16:07:01Z
 categories: Computer Science,Web
 tags: HHVM,OpenShift,PaaS
+featured: true
 ---
 
 The past four days had been particularly fruitful to me. In a nutshell, I've managed to compile HHVM along with a couple of extensions for RHEL 6, and packaged it with Nginx to build a web cartridge. **TL; DR** For those who just want the link to the cartridge repository, here it is: [http://github.com/tengyifei/openshift-cartridge-nginx-hhvm](http://github.com/tengyifei/openshift-cartridge-nginx-hhvm). Alternatively, you can add the cartridge via reflector url: `http://cartreflect-claytondev.rhcloud.com/github/tengyifei/openshift-cartridge-nginx-hhvm`. Otherwise, feel free to read on and I hope this article can serve as a valuable guide to developing cartridges for OpenShift.

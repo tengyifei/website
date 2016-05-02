@@ -3,6 +3,7 @@ title: Using AVX instructions in matrix multiplication
 published: 2014-02-28T04:06:40Z
 categories: Computer Science,Mathematics
 tags: assembler,AVX,C++,intrinsics,matrix,vector
+featured: true
 ---
 
 Recent Intel processors such as SandyBridge and IvyBridge have incorporated an instruction set called Advanced Vector Extensions, or AVX. This new addition to the spectrum of SIMD instructions makes the CPU even faster at crunching large amounts of floating point data. Matrix multiplication is a great candidate for performing optimizations via SIMD, since it involves mutually-independent multiplication and summing. To take advantage of the speed up, one could certainly inline a couple of assembly instructions. But this method is both inelegant and non-portable. The preferred approach is to use intrinsics instead. 

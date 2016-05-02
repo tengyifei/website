@@ -3,6 +3,7 @@ title: PCB for Kolibri Quadcopter project
 published: 2014-04-07T13:23:53Z
 categories: Computer Science,Embedded Systems,Quadcopter
 tags: soldering
+featured: true
 ---
 
 I ordered custom printed circuit boards from Oshpark in February. I scrutinized every component for possible source of error, but ignored the most important part: postal service. In my haste, I left the option for using which postal service to deliver the boards in its default state, USPS. Being infamous for its questionable quality of service, USPS took months to get the item across the pacific (did they use a ocean mail liner? I thought I signed up for air mail...)
