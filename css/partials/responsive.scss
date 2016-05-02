@@ -1,0 +1,9 @@
+@media only screen and (max-device-width: 500px) {
+    .mdl-cell--8-col, .mdl-cell--8-col-desktop.mdl-cell--8-col-desktop {
+        width: calc(80% - 16px);
+    }
+
+    .mdl-cell--2-col, .mdl-cell--2-col-desktop.mdl-cell--2-col-desktop {
+        width: calc(10% - 16px);
+    }
+}

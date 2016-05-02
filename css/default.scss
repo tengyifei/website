@@ -20,8 +20,10 @@
 .tnc-main {
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 3;
 }
+
+@import "css/partials/responsive";
 
 .tnc-layout .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
   padding-right: 0;
@@ -121,6 +123,26 @@ a.tnc-link, .mdl-layout-title a {
 .tnc-content div, .tnc-content p {
   line-height: 1.8em;
   font-size: 1.0em;
+}
+
+.tnc-content table {
+    margin-bottom: 16px;
+
+    border-collapse:separate;
+    border-spacing:0 5px;
+    th {
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+}
+
+tnc-caption, div.figure .caption {
+    font-size: 12px;
+    color: #888;
+    display: block;
 }
 
 @import "css/partials/sourcecode";

@@ -17,7 +17,7 @@ http {
 ```
 
 ![Response header](https://static.thinkingandcomputing.com/2014/09/response.png)
-Response header
+<tnc-caption>Response header</tnc-caption>
 
 No ETag in response header!
 

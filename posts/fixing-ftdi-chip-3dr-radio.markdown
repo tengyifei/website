@@ -14,8 +14,7 @@ Unwilling to acquiesce the loss of 30+ dollars, I decided to see if I could fix 
 I scrutinized the PCB board and found an abnormal capacitor. One side of the tantalum capacitor circled below was very dark. Normally the dark stripe was used to indicate the positive pin, but for this stripe the edge is blurred by a brownish tint one would easily relate to heat/fire damage. See image for the contrast between that particular capacitor on my 3DR board and a standard tantalum capacitor.
 
 ![Difference between a normal capacitor and the one on my 3DR radio](https://static.thinkingandcomputing.com/2014/02/ftdi_tan_vs.jpg)
-
-Comparison between a normal capacitor and the one on my 3DR radio
+<tnc-caption>Comparison between a normal capacitor and the one on my 3DR radio</tnc-caption>
 
 I employed a quick test of capacitors. Using a digital multimeter, I switched to Ω (resistance) mode and connected the probes to the two legs of the capacitor. Should the capacitor be functioning, the resistance value would have steadily increased as the critical voltage for further charges to be stored increases proportionately with the amount of charges inside. This time, the resistance value fluctuated wildly, before stabilizing at a low 12Ω. _The capacitor is definitely broken_, I thought, _giving rise to a near short circuit._ The text on the faulty capacitor says "106A", meaning that it has capacitance of 10µF and a rated voltage of merely 4V. [This](http://www.sparkfun.com/news/1271 "Why You Should De-Rate Capacitors") article in Sparkfun suggests that one should de-rate tantalum capacitor ratings by at least 60%-70%. Given the 3.3V logic level of the 3DR radio, it is very likely that the capacitor have failed under pressure.
 

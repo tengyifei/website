@@ -26,18 +26,11 @@ public class Author extends Person {
 ```
 ### Changelog
 
-31 Jan 2014: Created blog at [tengyifei88.wordpress.com](http://tengyifei88.wordpress.com) (since defunct).[](http://tengyifei88.wordpress.com)
-
-06 Feb 2014: Registered domain [thinkingandcomputing.com](http://web.archive.org/web/20140805132332/http://www.thinkingandcomputing.com/), set up redirect to wordpress.
-
-25 Feb 2014: Moved away from wordpress.com, migrated to self-hosted blog at Heroku.
-
-26 Feb 2014: Hit 10 articles and 100 visitors.
-
-15 Mar 2014: Enabled Cloudflare on all site contents, website now loads in a flash.
-
-02 Apr 2014: Migrated all existing media to Amazon S3 cloud storage + Cloudflare CDN.
-
-21 Oct 2014: [Migrating server](https://web.archive.org/web/20141023032546/http://thinkingandcomputing.com/) to VPS on DigitalOcean. Switching to naked domain name.
-
-31 Apr 2016: [Switched](https://web.archive.org/web/20160328071816/http://thinkingandcomputing.com/en/) to [static site](http://web.archive.org/web/20160505212348/http://thinkingandcomputing.com/) generated with Hakyll hosted on GitHub.
++ 31 Jan 2014: Created blog at [tengyifei88.wordpress.com](http://tengyifei88.wordpress.com) (since defunct).[](http://tengyifei88.wordpress.com)
++ 06 Feb 2014: Registered domain [thinkingandcomputing.com](http://web.archive.org/web/20140805132332/http://www.thinkingandcomputing.com/), set up redirect to wordpress.
++ 25 Feb 2014: Moved away from wordpress.com, migrated to self-hosted blog at Heroku.
++ 26 Feb 2014: Hit 10 articles and 100 visitors.
++ 15 Mar 2014: Enabled Cloudflare on all site contents, website now loads in a flash.
++ 02 Apr 2014: Migrated all existing media to Amazon S3 cloud storage + Cloudflare CDN.
++ 21 Oct 2014: [Migrating server](https://web.archive.org/web/20141023032546/http://thinkingandcomputing.com/) to VPS on DigitalOcean. Switching to naked domain name.
++ 31 Apr 2016: [Switched](https://web.archive.org/web/20160328071816/http://thinkingandcomputing.com/en/) to [static site](http://web.archive.org/web/20160505212348/http://thinkingandcomputing.com/) generated with Hakyll hosted on GitHub.

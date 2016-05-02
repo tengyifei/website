@@ -5,19 +5,29 @@ categories: Computer Science,Mathematics
 tags: assembler,AVX,C++,intrinsics,matrix,vector
 ---
 
-<p>Recent Intel processors such as SandyBridge and IvyBridge have incorporated an instruction set called Advanced Vector Extensions, or AVX. This new addition to the spectrum of SIMD instructions makes the CPU even faster at crunching large amounts of floating point data. Matrix multiplication is a great candidate for performing optimizations via SIMD, since it involves mutually-independent multiplication and summing. To take advantage of the speed up, one could certainly inline a couple of assembly instructions. But this method is both inelegant and non-portable. The preferred approach is to use intrinsics instead. </p>
-<p>What are instrinsics? Loosely speaking, intrinsics are functions that provide functionality equivalent to a few lines of assembly. Hence the assembly version can serve as a drop-in replacement to the function at compile-time. This allows performance-critical assembly code to be inlined without sacrificing the beauty and readability of the high-level language syntax. For example, the intrinsic function <span class="inlinecode">InterlockedExchange(LONG volatile *target, LONG value)</span> atomically sets the data at the memory address held by target to value. This function will be replaced by a single inlined assembly <span class="inlinecode">xchg [target], value</span> during compile time. </p>
-<p><!--more-->The <a title="Intel Intrinsics Guide" href="http://software.intel.com/sites/landingpage/IntrinsicsGuide/" target="_blank">Intel Intrinsics Guide</a> provides detailed reference on SIMD instructions and their respective intrinsic versions. However, the GCC naming conventions for intrinsic functions are different from those used in Intel, hence additional lookups are required. </p>
-<p>There are three types of instructions used: <br />load: moving data from memory to registers for calculation<br />arithmetic: batch operation on floating-point numbers in registers<br />and finally, store: moving data from registers back to memory for future processing</p>
-<p>The respective instructions are listed below:[table class="table table-striped"]<br />
-Kind, Assembly, Description, GCC intrinsics<br />
-load, "vmovups dst, addr", "Load 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements) from memory into dst.", __builtin_ia32_loadups256<br />
-mul, "vmulps dst, a, b", "Multiply packed single-precision (32-bit) floating-point elements in a and b, and store the results in dst.", __builtin_ia32_mulps256<br />
-add, "vaddps dst, a, b", "Add packed single-precision (32-bit) floating-point elements in a and b, and store the results in dst.", __builtin_ia32_addps256<br />
-store, "vmovups addr, a", "Store 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements) from a into memory.", __builtin_ia32_storeups256<br />
-[/table]</p>
-<p>Using the instrinsic versions, one could write vectorized code with ease. The following is a simple example of multiplying two groups of 8 floats: </p>
-<pre class="lang:c++" toolbar="false">#include
+Recent Intel processors such as SandyBridge and IvyBridge have incorporated an instruction set called Advanced Vector Extensions, or AVX. This new addition to the spectrum of SIMD instructions makes the CPU even faster at crunching large amounts of floating point data. Matrix multiplication is a great candidate for performing optimizations via SIMD, since it involves mutually-independent multiplication and summing. To take advantage of the speed up, one could certainly inline a couple of assembly instructions. But this method is both inelegant and non-portable. The preferred approach is to use intrinsics instead. 
+
+What are instrinsics? Loosely speaking, intrinsics are functions that provide functionality equivalent to a few lines of assembly. Hence the assembly version can serve as a drop-in replacement to the function at compile-time. This allows performance-critical assembly code to be inlined without sacrificing the beauty and readability of the high-level language syntax. For example, the intrinsic function `InterlockedExchange(LONG volatile *target, LONG value)` atomically sets the data at the memory address held by target to value. This function will be replaced by a single inlined assembly `xchg [target], value` during compile time. 
+
+The [Intel Intrinsics Guide](http://software.intel.com/sites/landingpage/IntrinsicsGuide/ "Intel Intrinsics Guide") provides detailed reference on SIMD instructions and their respective intrinsic versions. However, the GCC naming conventions for intrinsic functions are different from those used in Intel, hence additional lookups are required. 
+
+There are three types of instructions used: 
+load: moving data from memory to registers for calculation
+arithmetic: batch operation on floating-point numbers in registers
+and finally, store: moving data from registers back to memory for future processing
+
+The respective instructions are listed below:
+
+| Assembly          | Description                                                          | GCC intrinsics               |
+|-------------------|----------------------------------------------------------------------|------------------------------|
+| vmovups dst, addr | Load 256-bits (8 float elements) from memory into dst.               | `__builtin_ia32_loadups256`  |
+| vmulps dst, a, b  | Multiply float elements in a and b, and store the results in dst.    | `__builtin_ia32_mulps256`    |
+| vaddps dst, a, b  | Add float elements in a and b, and store the results in dst.         | `__builtin_ia32_addps256`    |
+| vmovups addr, a   | Store 256-bits (8 float elements) from a into memory.                | `__builtin_ia32_storeups256` |
+
+Using the instrinsic versions, one could write vectorized code with ease. The following is a simple example of multiplying two groups of 8 floats: 
+
+```c++
 #include <iostream>
 extern "C" {
 #include <immintrin.h>
@@ -38,16 +48,28 @@ int main(){
 	for (int i=0; i<8; i++)
 		std::cout<<c[i]<<", ";
 	return 0;
-}</pre><!--raw--><p>Note that the header <span class="inlinecode">&lt;immintrin.h&gt;</span> must be included.</p><!--/raw-->
-<p>Compile with:</p>
-<pre toolbar="false">g++ -mavx main.cpp -o test</pre>
-<p>The -mavx switch enables gcc to emit avx instructions. Without it, the program will not compile. Once run, the program should output "2, 6, 12, 20, 30, 42, 56, 72,". </p>
-<p>To keep it simple, I first started with a reduced version of matrix multiplication: multiplying an n x m matrix with an m x 1 matrix, which is essentially a vector. E.g.</p>
-<p><img style="display:block; margin-left:auto; margin-right:auto; border-radius: 0px; box-shadow: none;" alt="Matrix multiplication equation" src="https://static.thinkingandcomputing.com/2014/02/CodeCogsEqn.png" width="222" height="86" /></p>
-<p><span>This is achieved by setting the element of the last matrix at the i</span><sup>th</sup><span style="line-height: 1.714285714; font-size: 1rem;"> row and j</span><sup>th</sup><span> column to be the dot product between i</span><sup>th</sup><span> row of the first matrix and j</span><sup>th</sup><span> column of the second matrix. </span></p>
-<p>To do the same process efficiently using AVX code, one could load up to 8 groups of 8 floats per matrix in an iteration, using the <span class="inlinecode">__builtin_ia32_loadups256</span> function, after which respective float numbers in the two matrix would be multiplied, and the results summed to give the dot product. The advantage of this approach is that there is prospect of further instruction-level parallelism and also less overhead in loop. </p>
-<p>[expand title="Click to expand full code"]</p>
-<pre lang="C++" title="main.cpp">#include <iostream>
+}
+```
+
+Note that the header `<immintrin.h>` must be included.
+
+Compile with:
+
+```
+g++ -mavx main.cpp -o test
+```
+
+The -mavx switch enables gcc to emit avx instructions. Without it, the program will not compile. Once run, the program should output "2, 6, 12, 20, 30, 42, 56, 72,". 
+
+To keep it simple, I first started with a reduced version of matrix multiplication: multiplying an n x m matrix with an m x 1 matrix, which is essentially a vector. E.g.
+
+![Matrix multiplication equation](https://static.thinkingandcomputing.com/2014/02/CodeCogsEqn.png)
+
+<span>This is achieved by setting the element of the last matrix at the i</span><sup>th</sup> <span style="line-height: 1.714285714; font-size: 1rem;">row and j</span><sup>th</sup> <span>column to be the dot product between i</span><sup>th</sup> <span>row of the first matrix and j</span><sup>th</sup> <span>column of the second matrix. </span>
+
+To do the same process efficiently using AVX code, one could load up to 8 groups of 8 floats per matrix in an iteration, using the `__builtin_ia32_loadups256` function, after which respective float numbers in the two matrix would be multiplied, and the results summed to give the dot product. The advantage of this approach is that there is prospect of further instruction-level parallelism and also less overhead in loop.
+
+```c++
 #include <time.h>
 extern "C"
 {
@@ -56,7 +78,7 @@ extern "C"
 
 using namespace std;
 
-int main(){
+int main() {
   const int col = 128, row = 24, num_trails = 10000000;
 
   float w[row][col];
@@ -183,28 +205,29 @@ int main(){
   cout<<endl;
 
   return 0;
-}</pre>
-<p>[/expand]</p>
-<p><br />This algorithm has three versions of matrix-vector multiplication, namely the SIMD version using all YMM registers which handles column number up to the greatest multiple of 64, a similar version using half the registers handling the remaining column number up to the greatest multiple of 32, and a simple loop-based approach catering to the rest of situations.</p>
-<p>Compile with:</p>
-<pre toolbar="false">g++ -O3 -mavx main.cpp -o avxtest</pre>
-<p>Running avxtest:</p>
-<pre toolbar="false" highlight="false">$ ./avxtest
+}
+```
+
+This algorithm has three versions of matrix-vector multiplication, namely the SIMD version using all YMM registers which handles column number up to the greatest multiple of 64, a similar version using half the registers handling the remaining column number up to the greatest multiple of 32, and a simple loop-based approach catering to the rest of situations.
+
+Compile with:
+```
+g++ -O3 -mavx main.cpp -o avxtest
+```
+Running avxtest:
+```
+$ ./avxtest
 Time taken for serial version: 3980
 5831.11, 6747, 6506.54, 6451.99, 5929.76, 6637.35,
 Time taken for AVX version: 510
-5831.11, 6747, 6506.54, 6451.99, 5929.76, 6637.35,</pre>
-<p>As seen from the timing, using AVX resulted in nearly 8x speed up, which is expected, as each instruction is able to multiply 8 floats in a row. On the contrary, the serial multiplication algorithm, even under maximum optimization settings, was not automatically vectorized by gcc. </p>
-<p><!--raw--><style type="text/css">
-.inlinecode{
-border: 1px solid #ddd; background-color: #f8f8f8; border-radius: 3px; font-family: Consolas, Courier, monospace; font-size: 12px;
-}
-</style>
-<script type="text/javascript">jQuery(document).on('ready pjax:success', function() {
+5831.11, 6747, 6506.54, 6451.99, 5929.76, 6637.35,
+```
+
+As seen from the timing, using AVX resulted in nearly 8x speed up, which is expected, as each instruction is able to multiply 8 floats in a row. On the contrary, the serial multiplication algorithm, even under maximum optimization settings, was not automatically vectorized by gcc.
+
+<script type="text/javascript">jQuery(document).ready(function() {
 jQuery('.collapseomatic:not(.colomat-close)').each(function(index) {
 		var thisid = jQuery(this).attr('id');
 		jQuery('#target-'+thisid).css('display', 'none');
 	});
-});</script><!--/raw--></p>
-
-
+});</script>

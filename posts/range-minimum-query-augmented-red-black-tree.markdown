@@ -16,7 +16,7 @@ This type of operation is generally known as Range Minimum Query (RMQ), i.e. fin
 I started to look at the different interpretations of segment tree. A segment tree is roughly a structure that represents data ranges, although the details as to how ranges are partitioned vary greatly. [PEGWiki's version](http://wcipeg.com/wiki/Segment_tree) depicts the segment tree as a fully balanced binary tree, where for every parent node with closed range [R<sub>1</sub>, R<sub>2</sub>], the left and right child will correspond to range [R<sub>1</sub>, floor((R<sub>2</sub>-1)/2)] and [floor((R<sub>2</sub>-1)/2)+1, R<sub>2</sub>] respectively. This results in a split at approximately the center of each range.
 
 ![Example segment tree. Each node assigned an interval.](https://static.thinkingandcomputing.com/2014/05/segment_tree.png)
-Example segment tree. Each node assigned an interval.
+<tnc-caption>Example segment tree. Each node assigned an interval.</tnc-caption>
 
 The advantage of this construct is that it can be nicely packed into an array by storing it as the result of a breadth-first-traversal. The index of the left child node is simply that of parent multiplied by two. However, the drawback is that the position and range of nodes cannot be modified once the tree is created.
 
@@ -25,8 +25,7 @@ The advantage of this construct is that it can be nicely packed into an array b
 Is there another way to achieve this? After thorough deliberation it turns out that the answer is positive. All ordered binary trees i.e. those whose node's key is bigger than those in the left sub-tree and smaller than those in the right sub-tree, actually boasts properties very similar to segment trees. Consider the tree below as an example:
 
 [![Binary search tree with ranges labeled](https://static.thinkingandcomputing.com/2014/05/btree.png)
-
-Binary search tree with ranges labeled
+<tnc-caption>Binary search tree with ranges labeled</tnc-caption>
 
 The interesting effect here is that as one traverses down the tree, the range of keys possible at each sub-tree is repeatedly constrained. There is no requirement for keys belonging to the sub-tree rooted at 9, but all keys within the sub-tree rooted at 3 must fall in the open interval (-∞, 9), due to the sorted nature of binary search trees. Similarly, the range reduces further to (3, 9) for keys under the sub-tree rooted at 6\. We can now see that the lower bound and upper bound corresponding to a particular node can be given as the nearest node above it whose key is smaller/greater than the current node, respectively.
 
@@ -123,7 +122,6 @@ while ((node = node.parent) != null) {
 This part is a little bit tricky. But it can be shown that only the minimum value within node P and Q will have to be re-evaluated, and that the correct sequence to update them is to process the parent node first i.e. Q during clockwise rotation and P during anti-clockwise rotation.
 
 ![Tree rotation](http://upload.wikimedia.org/wikipedia/commons/2/23/Tree_rotation.png)
-
-Tree rotation. Image credit Wikipedia.
+<tnc-caption>Tree rotation. Image credit Wikipedia.</tnc-caption>
 
 After switching to the new algorithm, the analysis speed on financial data improved at least by a factor of 100\. This certainly demonstrates how vital a good algorithm can be to a program.

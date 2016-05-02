@@ -14,8 +14,7 @@ Seamlessly migrating a Wordpress blog is not particularly straightforward. Platf
 If one were to consider "Ocean" as to comprising countless "droplets", the eponymous server building block is ostensibly a deliberate play on the company's title i.e. DitigalOcean. The virtual server has many Linux flavors. I chose Ubuntu 14.04 as it appeared to have the most recent software packages.
 
 [![Droplet configuration](https://static.thinkingandcomputing.com/2014/10/droplet.png)](https://static.thinkingandcomputing.com/2014/10/droplet.png)
-
-Droplet configuration
+<tnc-caption>Droplet configuration</tnc-caption>
 
 Be sure to check the "Private Networking" option, as it can be very helpful when expanding to more than one servers.
 

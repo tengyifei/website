@@ -91,7 +91,7 @@ ZINTERSTORE article:computed_tags:movie:comment_count 2 article:tags:movie artic
 
 The result of the intersection is stored in <span class="lang:default highlight:0 decode:true  crayon-inline">article:computed_tags:movie:comment_count</span> . By running the command with weights [0, 1], the scores in the tags sorted set are ignored while those in <span class="lang:default highlight:0 decode:true  crayon-inline ">article:index:comment_count</span> are transferred as-is. This ultimately preserves the score in the index:
 
-```
+```ruby
 article:computed_tags:movie:comment_count
     3 => 1,
     5 => 3

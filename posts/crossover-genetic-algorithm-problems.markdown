@@ -17,11 +17,13 @@ As an example, suppose GA is used to find an optimum of this fitness function:
 
 This is a two-parameter function, hence GA is locating the highest points in two-dimensional space. Here's the 3D plot:
 
-[caption id="" align="aligncenter" width="507"]![3D plot of the search space](https://static.thinkingandcomputing.com/2014/04/3dplot.png) 3D plot of the search space[/caption]
+![3D plot of the search space](https://static.thinkingandcomputing.com/2014/04/3dplot.png)
+<tnc-caption>3D plot of the search space</tnc-caption>
 
 And the contour plot:
 
-[caption id="" align="aligncenter" width="424"]![Contour plot](https://static.thinkingandcomputing.com/2014/04/contour.png) Contour plot[/caption]
+![Contour plot](https://static.thinkingandcomputing.com/2014/04/contour.png)
+<tnc-caption>Contour plot</tnc-caption>
 
 It is apparent that the two optimum points lie in the middle of area 1 and 4 respectively. However, they actually belong to different sub-populations. A crossover operation on points taken from both area 1 and area 4 will result in a point that lies in area 2 or 3, which has low fitness scores. E.g. point [1.5, 4.5] combined with [4.0, 1.0] will either yield [1.5, 1.0] (in area 3) or [4.0, 4.5] (in area 2). This shows that crossover operation on different species, or sub-populations, has the potential to produce low-performing offspring. Crossover done on points from the same sub-population, on the other hand, does not pose this issue. E.g. [0.5, 5.0] combined with [0.8, 5.6] may give [0.5, 5.6], which still has a pretty high fitness score.
 

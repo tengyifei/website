@@ -116,8 +116,7 @@ I used the trade volume data from major Bitcoin exchanges to plot the following 
 The gradual but inevitable disappearance of Mt. Gox can be clearly seen from the volume charts. What used to be the monopolizing party in Bitcoin transaction ended in a wave of panic selling and endless civil lawsuit. By February, Mt. Gox was already operating beyond its limits. As rumors regarding possible insolvency spread, users started to frantically sell Bitcoin to save their investment, causing its price to plunge. This quickly escalated into a vicious cycle as other users, upon witnessing the price drop coupled with low credibility of Mt. Gox, expected it to close down, which prompted more selling. Within days the price of Bitcoin fell to barely $100, while on other exchanges prices were still fluctuating around $600\. Unable to sustain the unprecedented withdrawal, Mt. Gox was forced to shut down its website, hours after the final price dip.
 
 [![Price drops to $100 in 15 days](//static.thinkingandcomputing.com/2014/04/goxchart_s.png)
-
-Hyperdeflation
+<tnc-caption>Hyperdeflation</tnc-caption>
 
 However, long before its demise, Mt. Gox had been losing customers steadily. This can be primarily attributed to poor management, loose security measures and rough relationships with banks providing fiat currency withdrawal.
 

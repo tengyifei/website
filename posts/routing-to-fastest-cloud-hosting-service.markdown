@@ -13,7 +13,8 @@ Fortunately, the content of their website need not be closely synchronized acros
 
 Heroku is one of the few PaaS that provides the option to deploy the application in Europe, thus taking care of users there and in Middle-East. It is also more extendable under free tier than its counterpart, Openshift. BAE, on the other hand, excels at serving Chinese users with its sophisticated data-centers spread all over China. The rest of the requests will be served by GAE, which demonstrates generally moderate latency globally, but is slower than Heroku in Europe and fumbles in China.
 
-[caption id="" align="aligncenter" width="523"][![Example diagram illustrating the traffic-splitting effect reducing latency](https://static.thinkingandcomputing.com/2014/03/dns_map.png)](https://static.thinkingandcomputing.com/2014/03/dns_map.png) Example diagram illustrating the traffic-splitting effect reducing latency[/caption]
+[![Example diagram illustrating the traffic-splitting effect reducing latency](https://static.thinkingandcomputing.com/2014/03/dns_map.png)](https://static.thinkingandcomputing.com/2014/03/dns_map.png)
+<tnc-caption>Example diagram illustrating the traffic-splitting effect reducing latency</tnc-caption>
 
 The solution outlined above looks attractive, but may be troublesome to implement in practice. There needs to some kind of a load-balancer that intercepts all traffic, checks the user's geographical location using IP address and redirects the connection to one of the aforementioned services. Luckily, a similar effect can be achieved without the complications of this set-up. That is, DNS-based traffic management.
 
@@ -24,6 +25,6 @@ It is then possible to configure the DNS service to give different results for t
 After properly configuring the DNS records, a look-up test shows the following: 
 
 [![Different regions were directed to different servers for the same CNAME.](https://static.thinkingandcomputing.com/2014/03/dns.png)](https://static.thinkingandcomputing.com/2014/03/dns.png)
-Different regions were directed to different servers for the same CNAME.
+<tnc-caption>Different regions were directed to different servers for the same CNAME.</tnc-caption>
 
 And that's it! Users will now automatically visit the nearest server. But the downside of multiple PaaS is that data will not be synchronized across servers, and some form of custom syncing logic has to be implemented.
