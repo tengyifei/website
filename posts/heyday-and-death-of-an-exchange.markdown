@@ -5,9 +5,9 @@ categories: Computer Science,Cryptocurrencies
 tags: Bitcoin,data mining
 ---
 
-<p><!--raw--><script type="text/javascript">// <![CDATA[
+<script type="text/javascript">// <![CDATA[
 (function($) {
-$(document).on('ready pjax:success', function() {
+$(document).ready(function() {
 	$.ajax({
     url: '//www.google.com/jsapi',
     dataType: 'script',
@@ -103,15 +103,22 @@ if (element!=null){
         chart.draw(data, options);}
       }
 	  });})(jQuery);
-// ]]></script><!--/raw--></p>
-<p>Mt. Gox used to be the largest bitcoin exchange: back in 2012 it handled about 90% of the total transactions in the network. But now the exchange is no more. After filing for bankruptcy in February, Mt. Gox only have a few bleak statements on its website as remnants of its past glory.</p>
-<p>I used the trade volume data from major Bitcoin exchanges to plot the following graph. By programmatically summing all trades over a sliding window of 5 days for each exchange, I created a graph as a good reflection of their popularity. It was like performing a post mortem on Mt. Gox, except that the scalpel is data mining.</p>
+// ]]></script>
+
+Mt. Gox used to be the largest bitcoin exchange: back in 2012 it handled about 90% of the total transactions in the network. But now the exchange is no more. After filing for bankruptcy in February, Mt. Gox only have a few bleak statements on its website as remnants of its past glory.
+
+I used the trade volume data from major Bitcoin exchanges to plot the following graph. By programmatically summing all trades over a sliding window of 5 days for each exchange, I created a graph as a good reflection of their popularity. It was like performing a post mortem on Mt. Gox, except that the scalpel is data mining.
+
 <div id="chart_div_exchange" style="width: 100%; height: 400px;">
 <div style="text-align: center; margin-top: 100px; font-size: 25px; color: #bbb;">Loading chart data...</div>
 </div>
-<p><!--more-->The gradual but inevitable disappearance of Mt. Gox can be clearly seen from the volume charts. What used to be the monopolizing party in Bitcoin transaction ended in a wave of panic selling and endless civil lawsuit. By February, Mt. Gox was already operating beyond its limits. As rumors regarding possible insolvency spread, users started to frantically sell Bitcoin to save their investment, causing its price to plunge. This quickly escalated into a vicious cycle as other users, upon witnessing the price drop coupled with low credibility of Mt. Gox, expected it to close down, which prompted more selling. Within days the price of Bitcoin fell to barely $100, while on other exchanges prices were still fluctuating around $600. Unable to sustain the unprecedented withdrawal, Mt. Gox was forced to shut down its website, hours after the final price dip.</p>
-<p>[caption id="" align="aligncenter" width="364"]<img class=" " src="//static.thinkingandcomputing.com/2014/04/goxchart_s.png" alt="Price drops to $100 in 15 days" width="364" height="348" /> Hyperdeflation[/caption]</p>
-<p>However, long before its demise, Mt. Gox had been losing customers steadily. This can be primarily attributed to poor management, loose security measures and rough relationships with banks providing fiat currency withdrawal.</p>
-<p>Graph generated using data from <a href="http://bitcoincharts.com/" target="_blank">bitcoincharts.com</a></p>
 
+The gradual but inevitable disappearance of Mt. Gox can be clearly seen from the volume charts. What used to be the monopolizing party in Bitcoin transaction ended in a wave of panic selling and endless civil lawsuit. By February, Mt. Gox was already operating beyond its limits. As rumors regarding possible insolvency spread, users started to frantically sell Bitcoin to save their investment, causing its price to plunge. This quickly escalated into a vicious cycle as other users, upon witnessing the price drop coupled with low credibility of Mt. Gox, expected it to close down, which prompted more selling. Within days the price of Bitcoin fell to barely $100, while on other exchanges prices were still fluctuating around $600\. Unable to sustain the unprecedented withdrawal, Mt. Gox was forced to shut down its website, hours after the final price dip.
 
+[![Price drops to $100 in 15 days](//static.thinkingandcomputing.com/2014/04/goxchart_s.png)
+
+Hyperdeflation
+
+However, long before its demise, Mt. Gox had been losing customers steadily. This can be primarily attributed to poor management, loose security measures and rough relationships with banks providing fiat currency withdrawal.
+
+Graph generated using data from [bitcoincharts.com](http://bitcoincharts.com/)

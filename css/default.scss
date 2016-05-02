@@ -67,6 +67,9 @@
 
 a {
     color: #212121;
+}
+
+a.tnc-link, .mdl-layout-title a {
     text-decoration: initial;
 }
 
@@ -119,3 +122,5 @@ a {
   line-height: 1.8em;
   font-size: 1.0em;
 }
+
+@import "css/partials/sourcecode";

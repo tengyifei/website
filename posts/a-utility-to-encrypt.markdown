@@ -11,16 +11,18 @@ After an .exe file is encrypted and executed, a window will be shown instead. Ex
 
 [![ps](https://static.thinkingandcomputing.com/2014/02/ps1.png)](https://static.thinkingandcomputing.com/2014/02/ps1.png)
 
-Usage: passport file_to_be_encrypted
+Usage: `passport file_to_be_encrypted`
 
 Features:
-- AES-256 encryption
-- Using salted hash to verify password, hence the password is not stored in the encrypted file
-- Can encrypt files that are already packed
+
+* AES-256 encryption
+* Using salted hash to verify password, hence the password is not stored in the encrypted file
+* Can encrypt files that are already packed
 
 Limitations:
-- Target executable must import _GetProcAddress_ and _LoadLibraryA_ functions.
-- Currently only encrypts the first PE section
+
+* Target executable must import _GetProcAddress_ and _LoadLibraryA_ functions.
+* Currently only encrypts the first PE section
 
 --- Update ---
-An updated version is available [here](http://thinkingandcomputing.com/2014/02/08/update-to-exe-encryptor/)
+An updated version is available [here](./update-to-exe-encryptor.html)

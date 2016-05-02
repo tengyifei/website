@@ -24,10 +24,11 @@ public class Author extends Person {
     Date birthdate = new SimpleDateFormat("dd-MM-yyyy").parse("24-07-1995");
 }
 ```
-<h3>Changelog</h3>
-31 Jan 2014: Created blog at <a href="http://tengyifei88.wordpress.com">tengyifei88.wordpress.com</a> (since defunct).<a href="http://tengyifei88.wordpress.com"></a>
+### Changelog
 
-06 Feb 2014: Registered domain <a href="http://thinkingandcomputing.com">thinkingandcomputing.com</a>, set up redirect to wordpress.
+31 Jan 2014: Created blog at [tengyifei88.wordpress.com](http://tengyifei88.wordpress.com) (since defunct).[](http://tengyifei88.wordpress.com)
+
+06 Feb 2014: Registered domain [thinkingandcomputing.com](http://web.archive.org/web/20140805132332/http://www.thinkingandcomputing.com/), set up redirect to wordpress.
 
 25 Feb 2014: Moved away from wordpress.com, migrated to self-hosted blog at Heroku.
 
@@ -37,6 +38,6 @@ public class Author extends Person {
 
 02 Apr 2014: Migrated all existing media to Amazon S3 cloud storage + Cloudflare CDN.
 
-21 Oct 2014: Migrating server to VPS on DigitalOcean. Switching to naked domain name.
+21 Oct 2014: [Migrating server](https://web.archive.org/web/20141023032546/http://thinkingandcomputing.com/) to VPS on DigitalOcean. Switching to naked domain name.
 
-31 Apr 2016: Switched to static site generated with Hakyll hosted on GitHub.
+31 Apr 2016: [Switched](https://web.archive.org/web/20160328071816/http://thinkingandcomputing.com/en/) to [static site](http://web.archive.org/web/20160505212348/http://thinkingandcomputing.com/) generated with Hakyll hosted on GitHub.
