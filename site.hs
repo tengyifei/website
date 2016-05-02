@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
+import           Hakyll.Web.Sass
 
 
 --------------------------------------------------------------------------------
@@ -29,8 +30,13 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/*" $ do
+    match "css/*.css" $ do
         route   idRoute
+        compile compressCssCompiler
+
+    match "css/*.scss" $ do
+        route   $ setExtension "css"
+        compile sassCompiler
         compile compressCssCompiler
 
     match (fromList ["about.rst", "contact.markdown"]) $ do
@@ -74,6 +80,7 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
 
+    --- parse cover folder and generate script to randomize background picture ---
     match "templates/background-switcher.html" $
         compile $ do
             covers <- loadAll (fromGlob "images/cover/**" .&&. complement "images/**/*.psd")
@@ -81,6 +88,7 @@ main = hakyll $ do
             let backgroundCtx =
                     listField "imageNames" defaultContext (return coverNames)
 
+            --- perform template operations on this template, then parse back as template ---
             getResourceBody
                 >>= applyAsTemplate backgroundCtx
                 >>= (\(Item i x) -> makeItem $ readTemplate x)
