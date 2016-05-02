@@ -1,12 +1,10 @@
 ---
 title: SoundAuth: Audio authentication for mobile
 published: 2014-03-14T03:26:08Z
-categories: 
-tags: 
 ---
 
 <p>I thought a video would be much more illustrative than some long-winded explanation. So here it is:</p>
-<div class="video-container"><iframe width="560" height="315" src="http://www.youtube-nocookie.com/embed/WR2UeivUz9w?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
+<div class="video-container"><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WR2UeivUz9w?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
 <h2><strong>Introduction</strong></h2>
 <p>Traditional radio frequency identification (RFID) card and fingerprint authentication systems are exposed to security risks including card duplication and data capturing. For most RFID cards, once it is lost, anyone who picks up the card can use it. My project, an audio based authentication system using mobile phone producing sound aims to enhance the security as compared to RFID cards and fingerprints in authentication. We developed applications for various phones to produce a sound signal encoding certain personal information, different analogue filtering and amplifying circuits for sound pre-processing and a Fourier transform algorithm for the microprocessors to obtain different frequency components of sound as information. Through these, the phone is able to communicate with the microprocessor and act as a card for tapping. We ran a series of tests indicating that this filtering system allowed the authentication procedure to be extremely noise-resistant.</p>
 <h2><b>Translating information into sound</b></h2>
@@ -44,4 +42,3 @@ tags:
 <h2><b>What if others copy the sound?</b></h2>
 <p>In order to counter this problem, we developed an advanced feature of a mutating key scheme: the correct sequence of notes that is accepted by the authentication system changes after each authentication following a complex and irreversible algorithm. This implies that any malicious user who records the sound produced from phones of legitimate users and attempts to pass through the authentication system using the recorded sound will find the sound useless since the accepted sound has already changed after the sound is recorded. In short, the key scheme can be summarized into a flowchart below:</p>
 <p>[caption id="" align="aligncenter" width="602"]<a href="https://static.thinkingandcomputing.com/soundauth/flow.png"><img src="https://static.thinkingandcomputing.com/soundauth/flow.png" alt="SoundAuth Flowchart" width="602" height="373" /></a> [/caption]</p>
-
