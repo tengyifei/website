@@ -46,7 +46,7 @@ main = hakyll $ do
             css <- renderSass mainCSS
             return $ compressCss <$> css
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
+    match (fromList ["about.markdown", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
