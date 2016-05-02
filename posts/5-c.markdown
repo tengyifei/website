@@ -5,7 +5,6 @@ categories: Haphazard,Uncategorized
 tags: Snow
 ---
 
-<p><img class="size-full" alt="-5 °C" src="https://static.thinkingandcomputing.com/2014/02/snow.jpg" /></p>
-<p>Photo taken in Yantai, China.</p>
+![-5 °C](https://static.thinkingandcomputing.com/2014/02/snow.jpg)
 
-
+Photo taken in Yantai, China.
