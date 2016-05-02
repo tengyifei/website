@@ -62,9 +62,23 @@
 /* header link */
 
 .mdl-layout-title a {
-    color: #212121;
     font-weight: 400;
+}
+
+a {
+    color: #212121;
     text-decoration: initial;
+}
+
+@import "css/partials/mixin-keyframes";
+
+.tnc-content a {
+    color: #212121;
+    &:hover {
+        color: #C01010;
+    }
+    transition: color .3s linear;
+    -webkit-transition: color .3s linear;
 }
 
 /* font sizes */
@@ -86,4 +100,21 @@
 }
 
 @import "css/partials/scrollbar",
-        "css/partials/syntax"
+        "css/partials/syntax";
+
+.tnc-content, .tnc-content h1, .tnc-content h2, .tnc-content h3, .tnc-content h4, .mdl-navigation {
+    font-family: 'Raleway', 'Helvetica', sans-serif;
+    font-weight: 400;
+}
+
+.mdl-layout__title, .mdl-layout-title {
+    font-family: 'Courgette', cursive !important;
+}
+
+.tnc-content .info {
+  color: #777;
+}
+
+.tnc-content div {
+  line-height: 1.8em;
+}
