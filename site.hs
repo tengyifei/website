@@ -25,17 +25,23 @@ main = hakyll $ do
 
     --- blog ---
 
+    match ("images/**/*.jpg" .||. "images/*.jpg") $ do
+        route idRoute
+        compile $ getResourceLBS >>= withItemBody (unixFilterLBS "mozjpeg" [])
+
     match (fromGlob "images/**" .&&. complement "images/**/*.psd") $ do
         route   idRoute
         compile copyFileCompiler
+
+    match (fromGlob "images/cover/**" .&&. complement "images/**/*.psd") $ version "filename" $
+        compile $ getResourceFilePath >>= makeItem
 
     match "css/*.css" $ do
         route   idRoute
         compile compressCssCompiler
 
     -- import scss --
-    match ("css/**/*.scss" .||. "css/*.scss") $
-        compile idCompiler
+    match ("css/**/*.scss" .||. "css/*.scss") $ compile idCompiler
 
     create ["css/default.css"] $ do
         route   idRoute
@@ -43,8 +49,7 @@ main = hakyll $ do
             (dummy:_) <- loadAll "css/**/*.scss"
             (mainCSS:_) <- loadAll "css/default.scss"
             renderSass dummy    -- watch dependencies
-            css <- renderSass mainCSS
-            return $ compressCss <$> css
+            renderSass mainCSS >>= withItemBody (return . compressCss)
 
     match (fromList ["about.markdown", "contact.markdown"]) $ do
         route   $ setExtension "html"
@@ -97,15 +102,14 @@ main = hakyll $ do
     --- parse cover folder and generate script to randomize background picture ---
     match "templates/background-switcher.html" $
         compile $ do
-            covers <- loadAll (fromGlob "images/cover/**" .&&. complement "images/**/*.psd")
-            let coverNames = map itemIdAsBody covers
+            covers <- loadAll (fromGlob "images/cover/**" .&&. complement "images/**/*.psd" .&&. hasVersion "filename")
             let backgroundCtx =
-                    listField "imageNames" defaultContext (return coverNames)
+                    listField "imageNames" defaultContext (return covers)
 
             --- perform template operations on this template, then parse back as template ---
             getResourceBody
                 >>= applyAsTemplate backgroundCtx
-                >>= (\(Item i x) -> makeItem $ readTemplate x)
+                >>= withItemBody (return . readTemplate)
 
     match "templates/*" $ compile templateCompiler
 
@@ -115,9 +119,6 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
-
-itemIdAsBody :: Item CopyFile -> Item String
-itemIdAsBody (Item i _) = Item i (toFilePath i)
 
 idCompiler :: Compiler (Item String)
 idCompiler = getResourceString >>= (\(Item i x) -> makeItem x)
