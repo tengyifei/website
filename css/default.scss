@@ -1,5 +1,7 @@
-body .tnc-content * {
-    font-size: 15px;
+body .tnc-content {
+    a, p, div, ul {
+        font-size: 15px;
+    }
 }
 
 #tnc-background {
@@ -135,7 +137,7 @@ a.tnc-link, .mdl-layout-title a {
     border-spacing:0 5px;
     th {
         border-bottom: 1px solid #ddd;
-        padding: 2px 10px;
+        padding: 2px 6px;
     }
 
     tr:nth-child(even) {
@@ -143,7 +145,7 @@ a.tnc-link, .mdl-layout-title a {
     }
 
     td {
-        padding: 0 10px;
+        padding: 0 6px;
     }
 }
 
@@ -153,4 +155,5 @@ a.tnc-link, .mdl-layout-title a {
     display: block;
 }
 
-@import "css/partials/sourcecode";
+@import "css/partials/sourcecode",
+        "css/partials/charts";
