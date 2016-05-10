@@ -78,6 +78,19 @@ a.tnc-link, .mdl-layout-title a {
 
 @import "css/partials/mixin-keyframes";
 
+.tnc-post-list {
+    li {
+        margin-bottom: 5px;
+    }
+}
+
+.tnc-teaser {
+    a.tnc-link {
+        color: #AAA;
+    }
+    margin-bottom: 40px;
+}
+
 .tnc-content a {
     color: #212121;
     &:hover {
@@ -88,8 +101,11 @@ a.tnc-link, .mdl-layout-title a {
 }
 
 .tnc-post-list {
-    li {
-        margin-bottom: 5px;
+    h2>a {
+        font-size: inherit;
+    }
+    h2 {
+        margin: 16px 0;
     }
 }
 

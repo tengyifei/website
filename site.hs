@@ -60,6 +60,7 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -88,11 +89,10 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
+            posts <- recentFirst =<< loadAllSnapshots "posts/*" "content"
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
+                    listField "posts" teaserCtx (return posts) `mappend`
                     constField "title" "Home"                `mappend`
-                    constField "digest" "Bla"                `mappend`
                     defaultContext
 
             getResourceBody
@@ -120,6 +120,11 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+teaserCtx :: Context String
+teaserCtx =
+    teaserField "teaser" "content" `mappend`
+    postCtx
 
 idCompiler :: Compiler (Item String)
 idCompiler = getResourceString >>= (\(Item i x) -> makeItem x)

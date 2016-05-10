@@ -6,7 +6,7 @@ tags: Java,JNI
 featured: true
 ---
 
-In a previous post I mentioned that [caching array pointers can significantly reduce JNI overhead](./eliminating-jni-overhead.html "Eliminating JNI overhead: tricks and trade-offs"). But in order to maintain the validity of the cached pointers, one has to go against the docs: obtaining the pointer using GetPrimitiveArrayCritical but only releasing it sporadically. This entails that the critical section created between Get and ReleasePrimitiveArray has to span across multiple JNI calls. Initially I thought it would be a trivial task since I could just save the array object into a global variable, and after several JNI calls, I can still access the same object, like this:
+In a previous post I mentioned that [caching array pointers can significantly reduce JNI overhead](./eliminating-jni-overhead.html "Eliminating JNI overhead: tricks and trade-offs"). But in order to maintain the validity of the cached pointers, one has to go against the docs: obtaining the pointer using GetPrimitiveArrayCritical but only releasing it sporadically. This entails that the critical section created between Get and ReleasePrimitiveArray has to span across multiple JNI calls. <!--more-->Initially I thought it would be a trivial task since I could just save the array object into a global variable, and after several JNI calls, I can still access the same object, like this:
 
 ```c++
 jobjectArray array;

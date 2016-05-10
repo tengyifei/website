@@ -3,6 +3,8 @@ title: Kolibri Quadcopter project update
 published: 2014-09-23T16:33:57Z
 categories: Computer Science,Embedded Systems,Quadcopter
 tags: soldering
+featured: true
+intro: My quadcopter project has been progressing steadily. The assembly of airframe is almost complete. My quad now boasts a 6000mAh 3S battery, 4-in-1 ESC, and full carbon fiber fuselage and propeller. Go ahead and check out the photos.
 ---
 
 It has been quite a while since my last article. I am now studying at University of Illinois at Urbana-Champaign, meeting amazing people everyday. This does not mean however that I will not dedicate my time to this blog. The readers (i.e. you guys) are my best support.

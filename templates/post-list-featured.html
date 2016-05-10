@@ -1,5 +1,14 @@
 $for(posts)$
     $if(featured)$
         <h2><a class="tnc-link" href="$url$">$title$</a> - $date$</h2>
+        $if(intro)$
+            <div class="tnc-teaser">$intro$ <a class="tnc-link" href="$url$">more…</a></div>
+        $else$
+            $if(teaser)$
+                <div class="tnc-teaser">$teaser$ <a class="tnc-link" href="$url$">more…</a></div>
+            $else$
+                $body$
+            $endif$
+        $endif$
     $endif$
 $endfor$

@@ -6,7 +6,7 @@ tags: Bitcoin,correlation,data mining,Google Trends,search engine
 featured: true
 ---
 
-Google Trends is a powerful data mining tool with applications ranging from detecting flu outbreaks to predicting fashion. Today I played around with Google Trends, and discovered an interesting correlation between the number of search engine queries on Bitcoin and its price in major exchanges. Not surprisingly, the rise in value in April and November was closely matched with a rise in interest in Bitcoin. But during the second rally, the change in search volume actually _predates_ any change in price by a few days. Maybe this could be exploited to make some form of prediction on Bitcoin prices. 
+Google Trends is a powerful data mining tool with applications ranging from detecting flu outbreaks to predicting fashion. Today I played around with Google Trends, and discovered an interesting correlation between the number of search engine queries on Bitcoin and its price in major exchanges.<!--more--> Not surprisingly, the rise in value in April and November was closely matched with a rise in interest in Bitcoin. But during the second rally, the change in search volume actually _predates_ any change in price by a few days. Maybe this could be exploited to make some form of prediction on Bitcoin prices. 
 
 <div id="chart_div_bitcoin" style="width: 100%; height: 400px;">
 <div style="text-align: center; margin-top: 100px; font-size: 25px; color: #bbb;">Loading chart data...</div>

@@ -6,7 +6,7 @@ tags: closure
 featured: true
 ---
 
-Lately I made a mistake which I thought to be pretty prevalent among JavaScript beginners. More importantly, it revealed a subtle cross-browser JavaScript inconsistency regarding function declarations. I hope this article can clarify things a bit.
+Lately I made a mistake which I thought to be pretty prevalent among JavaScript beginners. More importantly, it revealed a subtle cross-browser JavaScript inconsistency regarding function declarations. I hope this article can clarify things a bit.<!--more-->
 
 ## The inception
 
