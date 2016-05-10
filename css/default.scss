@@ -1,16 +1,16 @@
 body .tnc-content {
     a, p, div, ul {
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 
 #tnc-background {
   position: fixed;
-  width: 105%;
-  height: 105%;
-  left: -10px;
-  right: -10px;
-  top: -10px;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  right: 0px;
+  top: 0px;
   z-index: 1;
 
   display: block;
@@ -53,7 +53,7 @@ body .tnc-content {
 
 .tnc-content {
   border-radius: 2px;
-  padding: 80px 56px;
+  padding: 60px 56px;
   margin-bottom: 80px;
 }
 
@@ -65,6 +65,7 @@ body .tnc-content {
 
 .mdl-layout-title a {
     font-weight: 400;
+    font-size: 24px;
 }
 
 a {
@@ -84,6 +85,12 @@ a.tnc-link, .mdl-layout-title a {
     }
     transition: color .3s linear;
     -webkit-transition: color .3s linear;
+}
+
+.tnc-post-list {
+    li {
+        margin-bottom: 5px;
+    }
 }
 
 /* font sizes */

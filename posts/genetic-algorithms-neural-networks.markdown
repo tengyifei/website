@@ -7,9 +7,7 @@ tags: artificial intelligence,back propagation,genetic algorithm,neural network
 
 One of the most endemic problem of using back propagation in training artificial neural networks is that the algorithm does not guarantee finding a global minimum i.e. a network whose weights produce the lowest classification error among all possible combinations and values of weights. This is because back propagation treats learning as an optimization problem, and uses [gradient descent](http://en.wikipedia.org/wiki/Gradient_descent "Gradient descent") to (hopefully) approximate the best solution. But gradient descent has inherent limitations that prevent this from happening. 
 
-[![Gradient descent stuck at local minima](https://static.thinkingandcomputing.com/2014/03/bprop.png)](https://static.thinkingandcomputing.com/2014/03/bprop.png)
-
-Gradient descent stuck at local minima
+![Gradient descent stuck at local minima](https://static.thinkingandcomputing.com/2014/03/bprop.png)
 
 Referring to the figure above, if the starting point for gradient descent was chosen inappropriately, more iterations of the algorithm will only make it approach a local minimum, never reaching the global one.
 
@@ -17,9 +15,7 @@ Therefore, back propagation is only a local optimization algorithm. To genuinely
 
 One of the algorithms vaunted for this property is genetic algorithm (GA). It attempts to apply the principles of natural selection on a population of candidates, performing sporadic random mutation, crossing over values from stronger parents to produce child generations and eliminating weak candidates. In the case of neural networks, the output error can act as a measure of candidate strength. The assumption is that if two parents are "strong", or producing low error, the child generated using a mixture of traits from each parent should also be strong, perhaps even stronger. This allows GA to fine-tune its search space, focusing only on regions likely to have minima. 
 
-[![Example of crossover operation in genetic algorithm](https://static.thinkingandcomputing.com/2014/03/crossover.png)](https://static.thinkingandcomputing.com/2014/03/crossover.png)
-
-Example of crossover operation in genetic algorithm
+![Example of crossover operation in genetic algorithm](https://static.thinkingandcomputing.com/2014/03/crossover.png)
 
 In the picture above, each bit in the child text is taken randomly from a parent, resulting in a mixture of features thus laying out new directions for search based on intuition. 
 
@@ -27,7 +23,7 @@ However, GA is not the panacea when it comes to mathematical optimization. The a
 
 Similarly, a formidable problem surfaces when GA is used to train neural networks. Due to their unique structure, neural networks may not retain their performance when undergone the cross-over operation. Two networks may have different internal structures, but still give identical outputs. See illustration below: 
 
-[![Two neural networks](https://static.thinkingandcomputing.com/2014/03/nn.png)](https://static.thinkingandcomputing.com/2014/03/nn.png)
+![Two neural networks](https://static.thinkingandcomputing.com/2014/03/nn.png)
 
 The two networks are essentially mirror reflections of each other, hence produce the same output. But if the cross-over operation is applied, the behavior of the resulting neural network will deviate significantly from that of the parents. Since GA is unaware of the internal structures of the two networks, it will combine weights belonging to nodes of different roles. Hence two superior networks of different structure, when crossed, may result in offspring performing poorly.
 
