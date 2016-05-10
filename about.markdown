@@ -33,4 +33,4 @@ public class Author extends Person {
 + 15 Mar 2014: Enabled Cloudflare on all site contents, website now loads in a flash.
 + 02 Apr 2014: Migrated all existing media to Amazon S3 cloud storage + Cloudflare CDN.
 + 21 Oct 2014: [Migrating server](https://web.archive.org/web/20141023032546/http://thinkingandcomputing.com/) to VPS on DigitalOcean. Switching to naked domain name.
-+ 31 Apr 2016: [Switched](https://web.archive.org/web/20160328071816/http://thinkingandcomputing.com/en/) to [static site](http://web.archive.org/web/20160505212348/http://thinkingandcomputing.com/) generated with Hakyll hosted on GitHub.
++ 31 Apr 2016: [Switched](https://web.archive.org/web/20160328071816/http://thinkingandcomputing.com/en/) to [static site](http://web.archive.org/web/20160519212348/http://thinkingandcomputing.com/) generated with Hakyll hosted on GitHub.
