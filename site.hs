@@ -13,6 +13,10 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
+    match "music/*" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match "irobotics/*" $ do
         route   idRoute
         compile copyFileCompiler
